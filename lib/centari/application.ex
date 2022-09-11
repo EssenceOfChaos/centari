@@ -15,7 +15,8 @@ defmodule Centari.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Centari.PubSub},
       # Start the Endpoint (http/https)
-      CentariWeb.Endpoint
+      CentariWeb.Endpoint,
+      CentariWeb.Presence
       # Start a worker by calling: Centari.Worker.start_link(arg)
       # {Centari.Worker, arg}
     ]

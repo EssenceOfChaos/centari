@@ -1,4 +1,5 @@
 import Config
+require Logger
 
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
@@ -6,7 +7,8 @@ import Config
 # and secrets from environment variables or elsewhere. Do not define
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
-
+DotenvParser.load_file(".env")
+Logger.debug("Parsing Dotenv file, secret value is #{System.get_env("SECRET_VALUE")}")
 # ## Using releases
 #
 # If you use `mix release`, you need to explicitly enable the server

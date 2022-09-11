@@ -1,0 +1,59 @@
+<h1>Watchlist</h1>
+
+<h3>Edit Watchlist</h3>
+
+<.form let={f} for={@watchlist_changeset} action={Routes.user_watchlist_path(@conn, :update)} id="update_watchlist" class="ui form">
+
+  <%= hidden_input f, :action, name: "action", value: "update_watchlist" %>
+
+<div class="field">
+    <%= label f, :watchlist %>
+    <%= multiple_select f, :watchlist, [
+      "T-Mobile": "TMUS",
+      "Microsoft": "MSFT",
+      "FedEx": "FDX",
+      "Apple": "AAPL",
+      "Amazon": "AMZN",
+      "Facebook": "FB",
+      "Tesla": "TSLA",
+      "Alibaba": "BABA",
+      "Google": "GOOGL",
+      "General Electric": "GE",
+      "Boeing": "BA",
+      "Goldman Sachs": "GS",
+      "Target": "TGT",
+      "Coca-Cola": "KO",
+      "Berkshire Hathaway": "BRKb",
+      "IBM": "IBM",
+      "Verizon": "VZ",
+      "Kohl's": "KSS",
+      "Twitter": "TWTR",
+      "Wells Fargo": "WFC",
+      "JPMorgan Chase": "JPC",
+      "Walmart": "WMT",
+      "NVIDIA": "NVDA",
+      "Netflix": "NFLX",
+      "AMD": "AMD"
+      ], class: "ui dropdown", id: "select_watchlist" %>
+  </div>
+  <%= error_tag f, :email %>
+
+
+
+  <div>
+    <%= submit "update watchlist" %>
+  </div>
+</.form>
+
+
+<%= if @current_user.watchlist do %>
+<h2> h2 go here </h2>
+<p> show user watchlist </p>
+  <%= for stock <- @current_user.watchlist do %>
+<ul>
+  <li> <%=stock %> </li>
+</ul>
+<% end %>
+<% end %>
+
+

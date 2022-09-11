@@ -1,0 +1,46 @@
+
+<.form let={f} for={:user} action={Routes.page_path(@conn, :create)}>
+
+
+
+  <div class="field">
+  <%= label f, :watchlist %>
+    <small>choose up to 5 stocks</small>
+    <%= multiple_select(f, :watchlist, [
+  "T-Mobile": "TMUS",
+    "Microsoft": "MSFT",
+    "FedEx": "FDX",
+    "Apple": "AAPL",
+    "Amazon": "AMZN",
+    "Facebook": "FB",
+    "Tesla": "TSLA",
+    "Alibaba": "BABA",
+    "Google": "GOOGL",
+    "General Electric": "GE",
+    "Boeing": "BA",
+    "Goldman Sachs": "GS",
+    "Target": "TGT",
+    "Coca-Cola": "KO",
+    "Berkshire Hathaway": "BRKb",
+    "IBM": "IBM",
+    "Verizon": "VZ",
+    "Kohl's": "KSS",
+    "Twitter": "TWTR",
+    "Wells Fargo": "WFC",
+    "JPMorgan Chase": "JPC",
+    "Walmart": "WMT",
+    "NVIDIA": "NVDA",
+    "Netflix": "NFLX",
+    "AMD": "AMD"
+    ], class: "ui dropdown", id: "stockPicker") %>
+  </div>
+  <br />
+
+
+
+
+  <div>
+      <button type="submit" class="ui primary button">Submit</button>
+  </div>
+
+</.form>

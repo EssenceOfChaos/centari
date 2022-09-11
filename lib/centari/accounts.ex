@@ -5,7 +5,7 @@ defmodule Centari.Accounts do
 
   import Ecto.Query, warn: false
   alias Centari.Repo
-
+  require Logger
   alias Centari.Accounts.{User, UserToken, UserNotifier}
 
   ## Database getters
@@ -350,4 +350,26 @@ defmodule Centari.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  def change_user_watchlist(user, attrs \\ %{}) do
+    User.watchlist_changeset(user, attrs)
+  end
+
+  def update_user_watchlist(user, attrs) do
+    email = user.email
+    Logger.info("user")
+    Logger.info(user)
+    Logger.info("attrs")
+    Logger.info(attrs)
+
+    user = User |> Repo.get_by(email: email)
+
+    User.watchlist_changeset(user, attrs)
+    |> Repo.update()
+  end
 end
+
+# [info] user
+# [info] [__meta__: #Ecto.Schema.Metadata<:loaded, "users">, __struct__: Centari.Accounts.User, confirmed_at: nil, email: "cooldude88@gmail.com", hashed_password: "$argon2id$v=19$m=65536,t=8,p=2$UKwEmTvgz/2LSLo3TCpgcw$H+qR9Q7xLO6uxVZLVYErrojIgzL/x/tvShxmJspDzuE", id: 1, inserted_at: ~N[2022-09-09 18:37:16], password: nil, updated_at: ~N[2022-09-09 18:37:16], watchlist: nil]
+# [info] attrs
+# [info] AAPLAMZNBRKbIBMTWTR

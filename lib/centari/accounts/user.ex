@@ -1,12 +1,14 @@
 defmodule Centari.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Argon2
 
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+    field :watchlist, {:array, :string}
 
     timestamps()
   end
@@ -134,5 +136,13 @@ defmodule Centari.Accounts.User do
     else
       add_error(changeset, :current_password, "is not valid")
     end
+  end
+
+  @doc """
+    Changeset for watchlist
+  """
+  def watchlist_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:watchlist])
   end
 end
